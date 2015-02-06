@@ -2,17 +2,20 @@ var helper = require('cogs-test-helper');
 
 helper.run({
   'test/config.json': {
-    'test/input.txt': {
-      path: 'test/input.txt',
-      buffer: helper.getFileBuffer('test/output.txt'),
-      hash: helper.getFileHash('test/output.txt'),
+    'test/foo.sass': {
+      path: 'test/foo.sass',
+      buffer: helper.getFileBuffer('test/output.css'),
+      hash: helper.getFileHash('test/output.css'),
       requires: [{
-        path: 'test/input.txt',
-        hash: helper.getFileHash('test/input.txt')
+        path: 'test/foo.sass',
+        hash: helper.getFileHash('test/foo.sass')
       }],
-      links: [],
+      links: [{
+        path: 'test/bar.sass',
+        hash: helper.getFileHash('test/bar.sass')
+      }],
       globs: []
     },
-    'test/error.txt': Error
+    'test/error.sass': Error
   }
 });

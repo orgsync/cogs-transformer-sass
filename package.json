@@ -1,12 +1,16 @@
 {
-  "name": "cogs-transformer-example",
+  "name": "cogs-transformer-sass",
   "version": "1.0.0",
   "author": "Casey Foster <c@sey.me>",
-  "description": "An example transformer for Cogs.",
+  "description": "A Sass transformer for Cogs.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caseywebdev/cogs-transformer-example"
+    "url": "https://github.com/caseywebdev/cogs-transformer-sass"
+  },
+  "dependencies": {
+    "node-sass": "2.0.0-beta",
+    "underscore": "1.7.0"
   },
   "devDependencies": {
     "cogs-test-helper": "1.0.1"

@@ -1,10 +1,11 @@
 {
   "in": {
-    "txt": {
+    "sass": {
+      "out": "css",
       "transformers": {
         "name": ".",
         "options": {
-          "errorText": "error"
+          "indentedSyntax": true
         }
       }
     }
