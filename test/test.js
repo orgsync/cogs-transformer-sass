@@ -16,6 +16,17 @@ helper.run({
       }],
       globs: []
     },
+    'test/empty.sass': {
+      path: 'test/empty.sass',
+      buffer: helper.getFileBuffer('test/empty.sass'),
+      hash: helper.getFileHash('test/empty.sass'),
+      requires: [{
+        path: 'test/empty.sass',
+        hash: helper.getFileHash('test/empty.sass')
+      }],
+      links: [],
+      globs: []
+    },
     'test/error.sass': Error
   }
 });
