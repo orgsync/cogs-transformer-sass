@@ -1,6 +1,6 @@
 {
   "name": "cogs-transformer-sass",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Casey Foster <c@sey.me>",
   "description": "A Sass transformer for Cogs.",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "https://github.com/caseywebdev/cogs-transformer-sass"
   },
   "dependencies": {
-    "node-sass": "2.1.1",
+    "node-sass": "3.3.3",
     "underscore": "1.8.3"
   },
   "devDependencies": {
