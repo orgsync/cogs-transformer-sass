@@ -1,13 +1,1 @@
-{
-  "in": {
-    "sass": {
-      "out": "css",
-      "transformers": {
-        "name": ".",
-        "options": {
-          "indentedSyntax": true
-        }
-      }
-    }
-  }
-}
+{"pipe": {"name": ".", "options": {"indentedSyntax": true}}}
