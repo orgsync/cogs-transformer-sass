@@ -1,1 +1,1 @@
-{"pipe": {"name": ".", "options": {"indentedSyntax": true}}}
+{"transformers": {"name": ".", "options": {"indentedSyntax": true}}}

@@ -1,33 +1,37 @@
-var _ = require('underscore');
-var path = require('path');
-var sass = require('node-sass');
+const _ = require('underscore');
+const npath = require('npath');
+const sass = require('node-sass');
 
-var DEFAULTS = {
+const DEFAULTS = {
   includePaths: [],
   indentedSyntax: false
 };
 
-var getRelative = function (filePath) { return path.relative('.', filePath); };
+const getRelative = path => npath.relative('.', path);
 
-module.exports = function (file, options, cb) {
+module.exports = ({file: {buffer, links, path}, options}) =>
+  new Promise((resolve, reject) => {
 
-  // Merge default options with user-defined options.
-  options = _.extend({}, DEFAULTS, options);
-  sass.render(_.extend(options, {
+    // Merge default options with user-defined options.
+    options = _.extend({}, DEFAULTS, options);
+    sass.render(_.extend(options, {
 
-    // node-sass chokes on empty strings, so provide at least a single space.
-    data: file.buffer.toString() + ' ',
+      // node-sass chokes on empty strings, so provide at least a single space.
+      data: `${buffer.toString()} `,
 
-    // Always concat the file path so relative @imports work correctly.
-    includePaths: options.includePaths.concat(path.dirname(file.path))
-  }), function (er, res) {
-    if (er) {
-      return cb(_.extend(new Error(), er, {
-        message: file.path + ': line ' + er.line + ', column ' + er.column +
-          ', ' + er.message
-      }));
-    }
-    var links = _.map(res.stats.includedFiles, getRelative);
-    cb(null, {buffer: new Buffer(res.css), links: file.links.concat(links)});
+      // Always concat the file path so relative @imports work correctly.
+      includePaths: options.includePaths.concat(npath.dirname(path))
+    }), function (er, res) {
+      if (er) {
+        return reject(_.extend(new Error(), er, {
+          message:
+            `${path}: line ${er.line}, column ${er.column}, ${er.message}`
+        }));
+      }
+
+      resolve({
+        buffer: new Buffer(res.css),
+        links: links.concat(_.map(res.stats.includedFiles, getRelative))
+      });
+    });
   });
-};
