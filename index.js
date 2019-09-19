@@ -1,6 +1,6 @@
 const _ = require('underscore');
 const npath = require('npath');
-const sass = require('node-sass');
+const sass = require('dart-sass');
 
 const DEFAULTS = {
   includePaths: [],
@@ -16,8 +16,7 @@ module.exports = ({file: {buffer, links, path}, options}) =>
     options = _.extend({}, DEFAULTS, options);
     sass.render(_.extend(options, {
 
-      // node-sass chokes on empty strings, so provide at least a single space.
-      data: `${buffer.toString()} `,
+    data: `${buffer.toString()}`,
 
       // Always concat the file path so relative @imports work correctly.
       includePaths: options.includePaths.concat(npath.dirname(path))
